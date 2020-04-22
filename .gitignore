@@ -1,11 +1,13 @@
 HELP.md
 .gradle
-src/main/resources/application.properties
-src/main/resources/data.sql
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
+
+### Sensitive Data ###
+src/main/resources/application.properties
+src/main/resources/data.sql
 
 ### STS ###
 .apt_generated
