@@ -21,4 +21,6 @@ public class BestBook {
 
     @XmlElement
     private Author author;
+
+    private String image_url;
 }

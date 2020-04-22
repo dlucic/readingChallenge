@@ -13,7 +13,8 @@ public interface GoodReadsBookMapper {
 
     @Mappings({
             @Mapping(source = "bestBook.title", target = "title"),
-            @Mapping(source = "bestBook.author.name", target = "author")
+            @Mapping(source = "bestBook.author.name", target = "author"),
+            @Mapping(source = "bestBook.image_url", target = "imageUrl")
     })
 
     GoodReadsBookDTO goodReadsBookToGoodReadsBookDTO(Work work);
