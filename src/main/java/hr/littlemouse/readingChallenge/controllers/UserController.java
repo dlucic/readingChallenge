@@ -19,7 +19,7 @@ public class UserController {
     }
 
     @GetMapping(path = "{userId}")
-    public User getUser(@PathVariable("userId") Long userId) {
+    public User getUserById(@PathVariable("userId") Long userId) {
         return userService.getUserById(userId);
     }
 
@@ -28,8 +28,8 @@ public class UserController {
         return userService.getUserByUsername(username);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED) // TODO: 13/04/2020 provjeriti što se dogodi kad nema ove anotacije 
+    @PostMapping("/user")
+    @ResponseStatus(HttpStatus.CREATED) // TODO: 13/04/2020 provjeriti što se dogodi kad nema ove anotacije
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }

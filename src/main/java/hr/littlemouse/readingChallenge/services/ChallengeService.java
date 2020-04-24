@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static hr.littlemouse.readingChallenge.exceptions.ExceptionMessages.CHALLENGE_DOES_NOT_EXIST;
+
 @Service
 @AllArgsConstructor
 public class ChallengeService {
@@ -20,7 +22,7 @@ public class ChallengeService {
 
     public Challenge getChallengeById(Long challengeId) {
         return challengeRepository.findById(challengeId)
-                .orElseThrow(()-> new ChallengeDoesNotExist("Challenge with id " + challengeId + " does not exist."));
+                .orElseThrow(()-> new ChallengeDoesNotExist(CHALLENGE_DOES_NOT_EXIST));
     }
 
     public List<Challenge> getChallengesByUsername(String username) {
