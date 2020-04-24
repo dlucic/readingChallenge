@@ -1,14 +1,11 @@
 package hr.littlemouse.readingChallenge.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import hr.littlemouse.readingChallenge.data.enumeration.Role;
 import lombok.Data;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlTransient;
 import java.util.Set;
 
 @Data
