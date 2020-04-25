@@ -6,10 +6,7 @@ import hr.littlemouse.readingChallenge.services.GoodReadsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,9 +17,9 @@ public class GoodReadsController {
 
     private final GoodReadsService goodReadsService;
 
-    @GetMapping(path = "/search/{bookName}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<GoodReadsBookDTO> searchByBookName(@PathVariable("bookName") String bookName){
-        return goodReadsService.getBookByName(bookName);
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<GoodReadsBookDTO> searchByBookName(@RequestParam(value = "query") String query){
+        return goodReadsService.getBookByName(query);
     }
 
 
