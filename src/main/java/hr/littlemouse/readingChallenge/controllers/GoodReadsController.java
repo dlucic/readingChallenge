@@ -17,7 +17,7 @@ public class GoodReadsController {
 
     private final GoodReadsService goodReadsService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(path = "/search", produces = MediaType.APPLICATION_JSON_VALUE)
     public List<GoodReadsBookDTO> searchByBookName(@RequestParam(value = "query") String query){
         return goodReadsService.getBookByName(query);
     }
