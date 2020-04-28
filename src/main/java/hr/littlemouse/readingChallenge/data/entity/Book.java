@@ -1,14 +1,11 @@
 package hr.littlemouse.readingChallenge.data.entity;
 
-import hr.littlemouse.readingChallenge.data.enumeration.Role;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Data
+@Entity(name = "books")
 public class Book {
 
     @Id
@@ -28,7 +25,7 @@ public class Book {
     private String datePublished;
 
     @Column
-    private Role isbn;
+    private String isbn;
 
     @Column(nullable = false)
     private Integer goodReadsId;

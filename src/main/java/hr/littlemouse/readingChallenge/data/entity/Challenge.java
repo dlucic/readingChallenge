@@ -1,19 +1,21 @@
 package hr.littlemouse.readingChallenge.data.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Data
-@Entity
-@Table(name = "challenges")
+@Entity(name = "challenges")
 public class Challenge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long challenge_id;
+    private Long id;
 
     private String name;
     private String type;
@@ -28,5 +30,11 @@ public class Challenge {
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     @JsonIgnore
     private Set<User> users;
+
+    @OneToMany(mappedBy = "challenge")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonBackReference
+    private Set<Task> tasks;
+
 
 }

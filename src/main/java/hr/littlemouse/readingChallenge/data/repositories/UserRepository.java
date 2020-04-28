@@ -1,4 +1,4 @@
-package hr.littlemouse.readingChallenge.data.repository;
+package hr.littlemouse.readingChallenge.data.repositories;
 
 import hr.littlemouse.readingChallenge.data.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -9,21 +9,24 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Data
-@Entity
-@Table(name = "users")
+@Entity(name = "users")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long user_id;
+    private Long id;
 
     private String first_name;
     private String last_name;
     public String username;
     private String email;
-    private Role role;
     private Integer total_points;
     private Integer challenges_won;
+
+    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "id"))
+    @Enumerated(EnumType.STRING)
+    private Set<Role> roles;
 
     @Lob
     @Type(type = "org.hibernate.type.BinaryType")

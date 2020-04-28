@@ -1,4 +1,4 @@
-package hr.littlemouse.readingChallenge.controllers;
+package hr.littlemouse.readingChallenge.controlleres;
 
 import hr.littlemouse.readingChallenge.data.entity.User;
 import hr.littlemouse.readingChallenge.services.UserService;
@@ -18,19 +18,32 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping(path = "{userId}")
-    public User getUserById(@PathVariable("userId") Long userId) {
-        return userService.getUserById(userId);
+    @GetMapping(path = "/{id}")
+    public User getUserById(@PathVariable("id") Long id) {
+        return userService.getUserById(id);
     }
 
-    @GetMapping(path = "username/{username}")
-    public User getUserByUsername(@PathVariable("username") String username) {
+    @GetMapping
+    public User getUserByUsername(@RequestParam("username") String username) {
         return userService.getUserByUsername(username);
     }
 
-    @PostMapping("/user")
-    @ResponseStatus(HttpStatus.CREATED) // TODO: 13/04/2020 provjeriti što se dogodi kad nema ove anotacije
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user) {
         return userService.createUser(user);
     }
+
+    @DeleteMapping(value = "/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
+    }
+
+    @PutMapping(value = "/{id}")
+    public User changeUser(@RequestBody User newUser, @PathVariable Long id) {
+        return userService.changeUser(newUser, id);
+    }
+
+
+
 }
