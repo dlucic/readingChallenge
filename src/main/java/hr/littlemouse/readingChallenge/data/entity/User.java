@@ -14,7 +14,8 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "id")
+    private Long user_id;
 
     private String first_name;
     private String last_name;
@@ -24,7 +25,7 @@ public class User {
     private Integer challenges_won;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "id"))
+    @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
     private Set<Role> roles;
 

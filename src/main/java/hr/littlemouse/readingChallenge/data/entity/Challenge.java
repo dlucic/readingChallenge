@@ -15,7 +15,7 @@ public class Challenge {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long challengeId;
 
     private String name;
     private String type;
@@ -26,7 +26,7 @@ public class Challenge {
     @ManyToMany
     @JoinTable(
             name = "challenges_users",
-            joinColumns = @JoinColumn(name = "challenge_id"),
+            joinColumns = @JoinColumn(name = "challengeId"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     @JsonIgnore
     private Set<User> users;

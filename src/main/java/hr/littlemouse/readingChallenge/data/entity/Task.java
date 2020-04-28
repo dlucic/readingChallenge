@@ -20,7 +20,7 @@ public class Task {
     private String status;
 
     @ManyToOne
-    @JoinColumn(name = "challenge_id", nullable = false)
+    @JoinColumn(name = "challengeId", nullable = false)
     @JsonManagedReference
     private Challenge challenge;
 
