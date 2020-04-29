@@ -25,8 +25,8 @@ public class ChallengeService {
                 .orElseThrow(()-> new ChallengeDoesNotExist(CHALLENGE_DOES_NOT_EXIST));
     }
 
-    public List<Challenge> getChallengesByUsername(String username) {
-        return challengeRepository.findByUsers_username(username);
+    public List<Challenge> getChallengesByUserId(Long userId) {
+        return challengeRepository.findByUsers_userId(userId);
     }
 
     public Challenge createChallenge(Challenge challenge) {

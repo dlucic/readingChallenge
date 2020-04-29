@@ -22,6 +22,7 @@ public class TaskService {
     }
 
     public List<Task> getTasksByChallenge(Long id) {
-        return taskRepository.findByChallengeChallengeId(id);
+//        return taskRepository.findByChallengeChallengeId(id);
+        return null;
     }
 }

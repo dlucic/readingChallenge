@@ -17,15 +17,17 @@ public class ChallengeController {
 
     private final ChallengeService challengeService;
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Challenge> getChallengesByUsername(@RequestParam("username") String username) {
-        return challengeService.getChallengesByUsername(username);
+    @GetMapping(path = "/user/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Challenge> getChallengesByUserId(@PathVariable("userId") Long userId) {
+        return challengeService.getChallengesByUserId(userId);
     }
 
     @GetMapping(path = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Challenge getChallengeById(@PathVariable("id") Long id) {
         return challengeService.getChallengeById(id);
     }
+
+
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

@@ -1,8 +1,11 @@
 package hr.littlemouse.readingChallenge.data.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import hr.littlemouse.readingChallenge.data.enumeration.Role;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,12 +13,12 @@ import java.util.Set;
 
 @Data
 @Entity(name = "users")
+@EqualsAndHashCode(exclude = "challenges")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long user_id;
+    private Long userId;
 
     private String first_name;
     private String last_name;
@@ -34,7 +37,7 @@ public class User {
     private byte [] user_photo;
 
     @ManyToMany(mappedBy = "users")
-    @JsonIgnore
+    @JsonIgnoreProperties("users")
     private Set<Challenge> challenges;
 
 }

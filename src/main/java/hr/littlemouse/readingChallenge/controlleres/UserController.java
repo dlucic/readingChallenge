@@ -1,10 +1,14 @@
 package hr.littlemouse.readingChallenge.controlleres;
 
+import hr.littlemouse.readingChallenge.data.entity.Challenge;
 import hr.littlemouse.readingChallenge.data.entity.User;
+import hr.littlemouse.readingChallenge.services.ChallengeService;
 import hr.littlemouse.readingChallenge.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @RestController
@@ -12,10 +16,12 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
 
     private final UserService userService;
+    private final ChallengeService challengeService;
 
     @Autowired
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ChallengeService challengeService) {
         this.userService = userService;
+        this.challengeService = challengeService;
     }
 
     @GetMapping(path = "/{id}")
@@ -26,6 +32,11 @@ public class UserController {
     @GetMapping
     public User getUserByUsername(@RequestParam("username") String username) {
         return userService.getUserByUsername(username);
+    }
+
+    @GetMapping(path = "/{userId}/challenges")
+    public List<Challenge> getChallengesByUserId(@PathVariable("userId") Long userId) {
+        return challengeService.getChallengesByUserId(userId);
     }
 
     @PostMapping

@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface ChallengeRepository extends JpaRepository<Challenge, Long> {
 
-    List<Challenge> findByUsers_username(String username);
+    List<Challenge> findByUsers_userId(Long userId);
+
 
 }

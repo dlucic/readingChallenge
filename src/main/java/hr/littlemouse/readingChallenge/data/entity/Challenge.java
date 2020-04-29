@@ -1,16 +1,15 @@
 package hr.littlemouse.readingChallenge.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Data
 @Entity(name = "challenges")
+@EqualsAndHashCode(exclude = "users")
 public class Challenge {
 
     @Id
@@ -22,18 +21,18 @@ public class Challenge {
     private String status;
     private String winner;
     private Integer points;
+    private Long ownerId;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("challenges")
     @JoinTable(
             name = "challenges_users",
-            joinColumns = @JoinColumn(name = "challengeId"),
+            joinColumns = @JoinColumn(name = "challenge_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
-    @JsonIgnore
     private Set<User> users;
 
-    @OneToMany(mappedBy = "challenge")
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonBackReference
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "challenge_id")
     private Set<Task> tasks;
 
 

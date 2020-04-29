@@ -1,5 +1,6 @@
 package hr.littlemouse.readingChallenge.services;
 
+import hr.littlemouse.readingChallenge.data.entity.Challenge;
 import hr.littlemouse.readingChallenge.exceptions.UserDoesNotExist;
 import hr.littlemouse.readingChallenge.data.entity.User;
 import hr.littlemouse.readingChallenge.data.repositories.UserRepository;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 import static hr.littlemouse.readingChallenge.exceptions.ExceptionMessages.USER_DOES_NOT_EXIST;
 
@@ -54,5 +57,7 @@ public class UserService {
                 })
                 .orElseThrow(() -> new UserDoesNotExist(USER_DOES_NOT_EXIST));
     }
+
+
 
 }

@@ -1,12 +1,13 @@
 package hr.littlemouse.readingChallenge.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Data
 @Entity(name = "tasks")
+@NoArgsConstructor
 public class Task {
 
     @Id
@@ -17,10 +18,5 @@ public class Task {
     private String type;
     private String points;
     private String status;
-
-    @ManyToOne
-    @JoinColumn(name = "challengeId", nullable = false)
-    @JsonManagedReference
-    private Challenge challenge;
 
 }
