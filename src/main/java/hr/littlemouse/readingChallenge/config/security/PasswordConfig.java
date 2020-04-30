@@ -1,4 +1,4 @@
-package hr.littlemouse.readingChallenge.security;
+package hr.littlemouse.readingChallenge.config.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

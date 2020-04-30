@@ -1,11 +1,9 @@
 package hr.littlemouse.readingChallenge.data.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import hr.littlemouse.readingChallenge.data.enumeration.Role;
+import hr.littlemouse.readingChallenge.data.enumeration.UserRole;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.ToString;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -27,10 +25,10 @@ public class User {
     private Integer total_points;
     private Integer challenges_won;
 
-    @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = UserRole.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "usr_role", joinColumns = @JoinColumn(name = "user_id"))
     @Enumerated(EnumType.STRING)
-    private Set<Role> roles;
+    private Set<UserRole> userRoles;
 
     @Lob
     @Type(type = "org.hibernate.type.BinaryType")
