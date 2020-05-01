@@ -46,7 +46,9 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
 
             Claims body = claimsJws.getBody();
             String username = body.getSubject();
-            List<Map<String, String>> authorities = (List<Map<String, String>>) body.get("authorities");
+
+            @SuppressWarnings("unchecked")
+            var authorities = (List<Map<String, String>>) body.get("authorities");
 
             Set<SimpleGrantedAuthority> simpleGrantedAuthorities = authorities.stream()
                     .map(m -> new SimpleGrantedAuthority(m.get("authority")))
