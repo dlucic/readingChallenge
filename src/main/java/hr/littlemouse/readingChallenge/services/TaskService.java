@@ -2,7 +2,7 @@ package hr.littlemouse.readingChallenge.services;
 
 import hr.littlemouse.readingChallenge.data.entity.Task;
 import hr.littlemouse.readingChallenge.data.repositories.TaskRepository;
-import hr.littlemouse.readingChallenge.exceptions.TaskDoesNotExist;
+import hr.littlemouse.readingChallenge.exceptions.TaskDoesNotExistException;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,7 +18,7 @@ public class TaskService {
 
     public Task getTaskById(Long taskId) {
         return taskRepository.findById(taskId)
-                .orElseThrow(()-> new TaskDoesNotExist(TASK_DOES_NOT_EXIST));
+                .orElseThrow(()-> new TaskDoesNotExistException(TASK_DOES_NOT_EXIST));
     }
 
     public List<Task> getTasksByChallenge(Long id) {

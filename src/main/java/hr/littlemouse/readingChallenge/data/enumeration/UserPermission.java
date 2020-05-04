@@ -6,6 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum UserPermission {
+
     USER_READ("user:read"),
     USER_WRITE("user:write");
 

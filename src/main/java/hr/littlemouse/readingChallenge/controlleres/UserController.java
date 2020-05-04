@@ -1,5 +1,6 @@
 package hr.littlemouse.readingChallenge.controlleres;
 
+import hr.littlemouse.readingChallenge.data.dto.UserDTO;
 import hr.littlemouse.readingChallenge.data.entity.Challenge;
 import hr.littlemouse.readingChallenge.data.entity.User;
 import hr.littlemouse.readingChallenge.services.ChallengeService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -41,7 +43,7 @@ public class UserController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public User createUser(@RequestBody User user) {
+    public User createUser(@Valid @RequestBody UserDTO user) {
         return userService.createUser(user);
     }
 

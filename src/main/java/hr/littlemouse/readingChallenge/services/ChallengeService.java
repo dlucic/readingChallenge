@@ -2,7 +2,7 @@ package hr.littlemouse.readingChallenge.services;
 
 import hr.littlemouse.readingChallenge.data.entity.Challenge;
 import hr.littlemouse.readingChallenge.data.repositories.ChallengeRepository;
-import hr.littlemouse.readingChallenge.exceptions.ChallengeDoesNotExist;
+import hr.littlemouse.readingChallenge.exceptions.ChallengeDoesNotExistException;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +22,7 @@ public class ChallengeService {
 
     public Challenge getChallengeById(Long challengeId) {
         return challengeRepository.findById(challengeId)
-                .orElseThrow(()-> new ChallengeDoesNotExist(CHALLENGE_DOES_NOT_EXIST));
+                .orElseThrow(()-> new ChallengeDoesNotExistException(CHALLENGE_DOES_NOT_EXIST));
     }
 
     public List<Challenge> getChallengesByUserId(Long userId) {

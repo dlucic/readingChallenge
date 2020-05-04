@@ -26,7 +26,6 @@ public class JwtUsernamePasswordFilter extends UsernamePasswordAuthenticationFil
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-
         try {
             LoginDTO authenticationRequest = new ObjectMapper().readValue(request.getInputStream(), LoginDTO.class);
 
@@ -35,8 +34,7 @@ public class JwtUsernamePasswordFilter extends UsernamePasswordAuthenticationFil
                     authenticationRequest.getPassword()
             );
 
-            Authentication authenticate = authenticationManager.authenticate(authentication);
-            return authenticate;
+            return authenticationManager.authenticate(authentication);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
